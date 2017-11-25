@@ -4,8 +4,6 @@
 BigPanda mission Documantation of Big Panda Devops task 
 -------------------------------------------------------
 
-Task source:
-https://github.com/bigpandaio/devops-exercise
 
 Architecture:
 --------------
@@ -84,47 +82,6 @@ vagrant ssh #to connect ot the machine
 vagrant destroy
 ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory base.yml 
 
-File system hirachy:
-----------------------
-.
-├── ansible.cfg
-├── base.retry
-├── base.yml
-├── commands
-├── dev
-│   ├── hosts
-│   └── static
-├── README-Niv.md
-├── roles
-│   ├── bamboo
-│   │   ├── files
-│   │   │   └── bamboo-app
-│   │   │       ├── bamboo_req_counter_v1_00.js
-│   │   │       ├── config.json
-│   │   │       └── package.json
-│   │   ├── meta
-│   │   │   └── main.yml
-│   │   ├── tasks
-│   │   │   └── main.yml
-│   │   └── vars
-│   │       └── main.yml
-│   ├── base_micro_service
-│   │   └── tasks
-│   │       └── main.yml
-│   └── nodejs
-│       ├── files
-│       │   └── nodejs-app
-│       │       ├── config.json
-│       │       ├── nodjs_uploader_v1_00.js
-│       │       └── package.json
-│       ├── meta
-│       │   └── main.yml
-│       ├── tasks
-│       │   └── main.yml
-│       └── vars
-│           └── main.yml
-└── Vagrantfile
-
 
 Notes:
 
@@ -151,4 +108,7 @@ the inventory file automatically.
 - Added to ansible taks files:
 	  become: yes 
   sinice insitaltion is posible only with sudo. The instaltion is using 'vagrant' user name by default (as configured).
+
+Task source:
+https://github.com/bigpandaio/devops-exercise
 
