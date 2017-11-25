@@ -1,0 +1,25 @@
+---
+- name: Common tasks FTW
+  hosts: all
+  become: yes
+  pre_tasks:
+    - name: Set hostname
+      hostname: name={{inventory_hostname}}
+
+- name: Base micro service configuration
+  hosts: all
+  become: yes
+  roles:
+    - { role: base_micro_service, tags: ["base_micro_serivce_role"] }
+
+- name: file uploader micro service
+  hosts: img-panda
+  become: yes
+  roles:
+    - { role: nodejs, tags: nodejs_uploader }
+
+- name: http request counter micro service
+  hosts: smart-panda
+  become: yes
+  roles:
+    - { role: bamboo, tags: bamboo_count_http_req }

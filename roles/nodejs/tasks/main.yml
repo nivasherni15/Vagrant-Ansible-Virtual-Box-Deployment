@@ -1,0 +1,45 @@
+---
+- name: copy {{app_name}} app
+  copy: src={{app_name}} dest={{dest_path}} owner=root group=root mode=0755
+
+- name: npm install
+  npm: path={{app_path}}
+
+- name: install npm package named formidable
+  shell: 'npm install formidable'
+  
+
+- name: make sure nodejs service is not already running to avoid port conjuction
+  shell: "ps -ef | grep nodejs | grep -v grep"
+  become: yes
+  ignore_errors: True
+  register: is_app_running
+- debug: var=is_app_running
+
+
+- name: kill if running  
+  shell: "pkill nodejs"
+  when: is_app_running.stdout.find('nodejs') != -1
+
+- name: run the nodejs uploader server application
+  shell: "nohup nodejs {{app_path}}/{{app_vers}}.js >/dev/null 2>&1 &"
+
+
+- name: create directory if it doesn't exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 0775
+  with_items:
+    - "{{random_file_dir}}"
+
+- name: install apache web server
+  become: yes
+  apt: name=apache2 update_cache=yes state=latest
+
+- name: Move uploaded files from /tmp default folder to {{random_file_dir}} 
+  shell: "scp /tmp/upload_* {{random_file_dir}}"
+  ignore_errors: True
+  

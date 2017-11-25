@@ -1,0 +1,5 @@
+app_name: bamboo-app
+app_path: /home/vagrant/{{app_name}}
+dest_path: /home/vagrant/
+app_vers: bamboo_req_counter_v1_00
+

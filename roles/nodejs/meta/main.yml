@@ -1,0 +1,2 @@
+dependencies:
+  - { role: base_micro_service, tags: "nodejs_uploader_dependencies"}

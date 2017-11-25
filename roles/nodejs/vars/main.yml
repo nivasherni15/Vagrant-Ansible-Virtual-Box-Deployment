@@ -1,0 +1,5 @@
+app_name: nodejs-app
+app_path: /home/vagrant/{{app_name}}
+dest_path: /home/vagrant/
+app_vers: nodjs_uploader_v1_00
+random_file_dir: /var/www/html/resources

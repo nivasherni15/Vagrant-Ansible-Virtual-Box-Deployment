@@ -1,0 +1,6 @@
+
+to run only the andible witout the vagrant:
+ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory base.yml
+
+vagrant global-status
+

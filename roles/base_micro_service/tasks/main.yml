@@ -1,0 +1,11 @@
+---
+- name: Install dependencies for base micro server (can take some minutes so please wait)
+  become: yes
+  apt: pkg={{item}} state=installed
+  with_items:
+    - nodejs
+    - npm
+  ignore_errors: yes
+  register: npm_finish_install_pkg 
+#- debug: var=npm_finish_install_pkg
+
